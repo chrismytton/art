@@ -6,7 +6,7 @@
   }
 </style>
 
-<a href="">
+<a href="" id="save">
   <canvas id="viewport" width="640" height="480"></canvas>
 </a>
 
@@ -34,5 +34,10 @@ for (var i = 0; i < lineCount; i++) {
   ctx.lineTo(endX, endY);
   ctx.stroke();
 }
+
+save.onclick = function() {
+  window.location = viewport.toDataURL('image/png');
+  return false;
+};
 
 </script>
