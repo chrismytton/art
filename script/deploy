@@ -1,0 +1,3 @@
+#!/bin/bash
+set -e
+rsync -avz --delete public/ hecticjeff:/data/art.hecticjeff.net
