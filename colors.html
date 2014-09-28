@@ -1,0 +1,17 @@
+<title>Colors</title>
+<style>
+  body { transition: background-color 500ms linear; }
+</style>
+<script>
+  function randomColor() {
+    return Math.floor(Math.random() * 255);
+  }
+  setInterval(function() {
+    var rgb = [
+      randomColor(),
+      randomColor(),
+      randomColor()
+    ].join(",");
+    document.body.style.cssText = "background-color: rgb(" + rgb +  ")";
+  }, 500);
+</script>
