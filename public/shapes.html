@@ -1,14 +1,16 @@
 <title>Shapes</title>
 <style>
   body {
-    max-width: 640px;
-    margin: 0 auto;
+    margin: 0;
   }
 </style>
 <a href="" id="save">
   <canvas id="viewport" width="640" height="480"></canvas>
 </a>
 <script>
+
+viewport.width = document.body.clientWidth;
+viewport.height = document.body.clientHeight;
 
 var ctx = viewport.getContext('2d');
 ctx.lineWidth = 3;
