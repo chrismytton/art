@@ -1,0 +1,92 @@
+<title>Combo</title>
+<style>
+  body {
+    margin: 0;
+  }
+</style>
+<a href="" id="save">
+  <canvas id="viewport" width="640" height="480"></canvas>
+</a>
+<script>
+
+viewport.width = document.body.clientWidth;
+viewport.height = document.body.clientHeight;
+
+var ctx = viewport.getContext('2d');
+ctx.lineWidth = 3;
+var width = viewport.width;
+var height = viewport.height;
+
+function random(max) {
+  return Math.floor(Math.random() * max);
+}
+
+// COLORS
+var rgb = [
+  random(255),
+  random(255),
+  random(255)
+].join(",");
+ctx.fillStyle = "rgb(" + rgb +  ")";
+ctx.fillRect(0, 0, width, height);
+
+// LINES
+var lineCount = 5 + random(5);
+var colors = ['deeppink', 'darkorange', 'lime'];
+for (var i = 0; i < lineCount; i++) {
+  var color = colors[random(colors.length)];
+  var startX = random(width);
+  var startY = random(height / 2);
+  var endX = random(width);
+  var endY = random(height / 2) + (height / 2);
+  ctx.strokeStyle = color;
+  ctx.beginPath();
+  ctx.moveTo(startX, startY);
+  ctx.lineTo(endX, endY);
+  ctx.stroke();
+}
+
+// SHAPES
+function square(startX, startY) {
+  ctx.fillRect(startX, startY, 50, 50);
+}
+
+function triangle(startX, startY) {
+  ctx.beginPath();
+  ctx.moveTo(startX, startY);
+  ctx.lineTo(startX + 50, startY);
+  ctx.lineTo(startX + 25, startY - 50);
+  ctx.fill();
+}
+
+function circle(startX, startY) {
+  ctx.beginPath();
+  ctx.arc(startX, startY, 25, 0, Math.PI * 2, true);
+  ctx.fill();
+}
+
+var shapes = [square, triangle, circle];
+
+var colors = [
+  'rgba(255, 0, 0, 0.8)', // Red
+  'rgba(255, 255, 0, 0.8)', // Yellow
+  'rgba(0, 0, 255, 0.8)' // Blue
+];
+
+var shapeCount = 18;
+
+for (var i = 0; i < shapeCount; i++) {
+  var color = colors[random(colors.length)];
+  var shape = shapes[random(shapes.length)];
+  var startX = random(width);
+  var startY = random(height);
+  ctx.fillStyle = color;
+  shape(startX, startY);
+}
+
+save.onclick = function() {
+  window.location = viewport.toDataURL('image/png');
+  return false;
+};
+
+</script>
