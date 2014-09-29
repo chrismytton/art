@@ -4,17 +4,17 @@
 </style>
 <script>
 
-  function random(max) {
-    return Math.floor(Math.random() * max);
-  }
+function random(max) {
+  return Math.floor(Math.random() * max);
+}
 
-  setInterval(function() {
-    var rgb = [
-      random(255),
-      random(255),
-      random(255)
-    ].join(",");
-    document.body.style.cssText = "background-color: rgb(" + rgb +  ")";
-  }, 500);
+setInterval(function() {
+  var rgb = [
+    random(255),
+    random(255),
+    random(255)
+  ].join(",");
+  document.body.style.cssText = "background-color: rgb(" + rgb +  ")";
+}, 500);
 
 </script>
