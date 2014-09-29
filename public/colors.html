@@ -3,15 +3,18 @@
   body { transition: background-color 500ms linear; }
 </style>
 <script>
-  function randomColor() {
-    return Math.floor(Math.random() * 255);
+
+  function random(max) {
+    return Math.floor(Math.random() * max);
   }
+
   setInterval(function() {
     var rgb = [
-      randomColor(),
-      randomColor(),
-      randomColor()
+      random(255),
+      random(255),
+      random(255)
     ].join(",");
     document.body.style.cssText = "background-color: rgb(" + rgb +  ")";
   }, 500);
+
 </script>

@@ -17,17 +17,21 @@ ctx.lineWidth = 3;
 var width = viewport.width;
 var height = viewport.height;
 
+function random(max) {
+  return Math.floor(Math.random() * max);
+}
+
 // Between 5 and 10 lines
-var lineCount = 5 + Math.floor(Math.random() * 5);
+var lineCount = 5 + random(5);
 
 var colors = ['deeppink', 'darkorange', 'lime'];
 
 for (var i = 0; i < lineCount; i++) {
-  var color = colors[Math.floor(Math.random() * colors.length)];
-  var startX = Math.floor(Math.random() * width);
-  var startY = Math.floor(Math.random() * (height / 2));
-  var endX = Math.floor(Math.random() * width);
-  var endY = Math.floor(Math.random() * (height / 2)) + (height / 2);
+  var color = colors[random(colors.length)];
+  var startX = random(width);
+  var startY = random(height / 2);
+  var endX = random(width);
+  var endY = random(height / 2) + (height / 2);
   ctx.strokeStyle = color;
   ctx.beginPath();
   ctx.moveTo(startX, startY);
