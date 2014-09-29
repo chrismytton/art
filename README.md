@@ -11,7 +11,7 @@ This is an evolving collection of art, to create a new piece add it to the `publ
 - Explore randomness in art
 - Interactive art using GET parameters
 - Art through telnet using ANSI escape codes
-- Put some art into dns
+- Put some art into DNS
 - Use the browser sound API
 - ASCII art
 - Computer generated poems
