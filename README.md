@@ -18,6 +18,7 @@ This is an evolving collection of art, to create a new piece add it to the `publ
 - Explore shapes and color
 - Interactive game
 - 3D models
+- Animated gifs
 
 ## Inspiration
 
