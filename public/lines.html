@@ -1,47 +1,16 @@
-<title>Lines</title>
-<style>
-  body {
-    margin: 0
-  }
-</style>
-<a href="" id="save">
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lines</title>
+  <style>
+    body {
+      margin: 0
+    }
+  </style>
+  <script src="random.js"></script>
+</head>
+<body onload="renderLines()">
   <canvas id="viewport" width="640" height="480"></canvas>
-</a>
-<script>
-
-viewport.width = document.body.clientWidth;
-viewport.height = document.body.clientHeight;
-
-var ctx = viewport.getContext('2d');
-ctx.lineWidth = 3;
-var width = viewport.width;
-var height = viewport.height;
-
-function random(max) {
-  return Math.floor(Math.random() * max);
-}
-
-// Between 5 and 10 lines
-var lineCount = 5 + random(5);
-
-var colors = ['deeppink', 'darkorange', 'lime'];
-
-for (var i = 0; i < lineCount; i++) {
-  var color = colors[random(colors.length)];
-  var startX = random(width);
-  var startY = random(height / 2);
-  var endX = random(width);
-  var endY = random(height / 2) + (height / 2);
-  ctx.strokeStyle = color;
-  ctx.beginPath();
-  ctx.moveTo(startX, startY);
-  ctx.lineTo(endX, endY);
-  ctx.stroke();
-}
-
-save.onclick = function() {
-  window.location = viewport.toDataURL('image/png');
-  return false;
-};
-
-</script>
+</body>
+</html>
