@@ -18,8 +18,8 @@ function random(max) {
 var CanvasPainting = /** @class */ (function () {
     function CanvasPainting(viewport) {
         this.viewport = viewport;
-        this.width = viewport.width = document.body.clientWidth;
-        this.height = viewport.height = document.body.clientHeight;
+        this.width = viewport.width = window.innerWidth || document.body.clientWidth;
+        this.height = viewport.height = window.innerHeight || document.body.clientHeight;
         var ctx = viewport.getContext('2d');
         if (!ctx) {
             throw new Error("Failed to getContext from canvas element");
