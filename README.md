@@ -1,6 +1,23 @@
 # Art
 
-This is an evolving collection of art, to create a new piece add it to the `public/` directory.
+This is an evolving collection of digital art.
+
+## Usage
+
+Create a new piece by adding an HTML file to the `docs/` directory.
+
+To compile the TypeScript you'll need to install TypeScript globally and then run `tsc`.
+
+```
+$ npm install -g typescript
+$ tsc
+```
+
+To watch TypeScript files for changes:
+
+```
+$ tsc -w
+```
 
 ## Ideas
 
