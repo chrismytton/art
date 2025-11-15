@@ -139,3 +139,64 @@ function renderCombo() {
   const combo = new Combo(viewport);
   combo.render();
 }
+
+class AsciiArt {
+  container: HTMLElement;
+  width: number;
+  height: number;
+  characters: string[];
+
+  constructor(container: HTMLElement) {
+    this.container = container;
+    // Calculate how many characters can fit based on viewport
+    this.width = Math.floor((window.innerWidth || document.body.clientWidth) / 12);
+    this.height = Math.floor((window.innerHeight || document.body.clientHeight) / 20);
+    // Different ASCII characters with varying visual density
+    this.characters = [' ', '.', ':', '-', '=', '+', '*', '#', '%', '@'];
+  }
+
+  render() {
+    let art = '';
+
+    // Generate pattern based on position
+    for (let y = 0; y < this.height; y++) {
+      for (let x = 0; x < this.width; x++) {
+        // Create patterns using math functions
+        const distance = Math.sqrt(
+          Math.pow(x - this.width / 2, 2) +
+          Math.pow(y - this.height / 2, 2)
+        );
+
+        // Use different patterns based on randomness
+        const pattern = random(3);
+        let charIndex;
+
+        if (pattern === 0) {
+          // Circular pattern
+          charIndex = Math.floor(distance) % this.characters.length;
+        } else if (pattern === 1) {
+          // Wave pattern
+          charIndex = Math.floor(Math.sin(x / 3) * Math.cos(y / 3) * this.characters.length / 2) + Math.floor(this.characters.length / 2);
+        } else {
+          // Random noise
+          charIndex = random(this.characters.length);
+        }
+
+        art += this.characters[charIndex];
+      }
+      art += '\n';
+    }
+
+    this.container.textContent = art;
+  }
+}
+
+function renderAsciiArt() {
+  const container = document.getElementById('ascii-container');
+  if (!container) {
+    throw new Error("Couldn't find element with id 'ascii-container'");
+  }
+
+  const ascii = new AsciiArt(container);
+  ascii.render();
+}
