@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ASCII Art</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: #000;
+      color: #0f0;
+      overflow: hidden;
+    }
+    #ascii-container {
+      font-family: 'Courier New', monospace;
+      font-size: 12px;
+      line-height: 1;
+      white-space: pre;
+      padding: 10px;
+    }
+  </style>
+  <script src="random.js"></script>
+</head>
+<body onload="renderAsciiArt()">
+  <div id="ascii-container"></div>
+</body>
+</html>

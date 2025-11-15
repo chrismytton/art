@@ -3,10 +3,12 @@ var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
         return extendStatics(d, b);
     };
     return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -77,8 +79,8 @@ var Shapes = /** @class */ (function (_super) {
         this.ctx.lineWidth = 3;
         var shapes = ['square', 'triangle', 'circle'];
         var colors = [
-            'rgba(255, 0, 0, 0.8)',
-            'rgba(255, 255, 0, 0.8)',
+            'rgba(255, 0, 0, 0.8)', // Red
+            'rgba(255, 255, 0, 0.8)', // Yellow
             'rgba(0, 0, 255, 0.8)' // Blue
         ];
         var shapeCount = 18;
@@ -111,7 +113,7 @@ function randomBackgroundColor() {
         random(255),
         random(255)
     ].join(",");
-    document.body.style.cssText = "background-color: rgb(" + rgb + ")";
+    document.body.style.cssText = "background-color: rgb(".concat(rgb, ")");
 }
 function changingRandomBackgroundColor() {
     return setInterval(randomBackgroundColor, 500);
@@ -139,4 +141,52 @@ function renderCombo() {
     }
     var combo = new Combo(viewport);
     combo.render();
+}
+var AsciiArt = /** @class */ (function () {
+    function AsciiArt(container) {
+        this.container = container;
+        // Calculate how many characters can fit based on viewport
+        this.width = Math.floor((window.innerWidth || document.body.clientWidth) / 12);
+        this.height = Math.floor((window.innerHeight || document.body.clientHeight) / 20);
+        // Different ASCII characters with varying visual density
+        this.characters = [' ', '.', ':', '-', '=', '+', '*', '#', '%', '@'];
+    }
+    AsciiArt.prototype.render = function () {
+        var art = '';
+        // Generate pattern based on position
+        for (var y = 0; y < this.height; y++) {
+            for (var x = 0; x < this.width; x++) {
+                // Create patterns using math functions
+                var distance = Math.sqrt(Math.pow(x - this.width / 2, 2) +
+                    Math.pow(y - this.height / 2, 2));
+                // Use different patterns based on randomness
+                var pattern = random(3);
+                var charIndex = void 0;
+                if (pattern === 0) {
+                    // Circular pattern
+                    charIndex = Math.floor(distance) % this.characters.length;
+                }
+                else if (pattern === 1) {
+                    // Wave pattern
+                    charIndex = Math.floor(Math.sin(x / 3) * Math.cos(y / 3) * this.characters.length / 2) + Math.floor(this.characters.length / 2);
+                }
+                else {
+                    // Random noise
+                    charIndex = random(this.characters.length);
+                }
+                art += this.characters[charIndex];
+            }
+            art += '\n';
+        }
+        this.container.textContent = art;
+    };
+    return AsciiArt;
+}());
+function renderAsciiArt() {
+    var container = document.getElementById('ascii-container');
+    if (!container) {
+        throw new Error("Couldn't find element with id 'ascii-container'");
+    }
+    var ascii = new AsciiArt(container);
+    ascii.render();
 }
